@@ -1,0 +1,104 @@
+/* Design tokens. Components use these variables only — no hard-coded colors elsewhere. */
+:root {
+  --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: ui-monospace, 'Cascadia Code', 'SFMono-Regular', Consolas, monospace;
+
+  /* 4px spacing scale */
+  --s-1: 4px; --s-2: 8px; --s-3: 12px; --s-4: 16px; --s-5: 20px; --s-6: 24px; --s-8: 32px; --s-10: 40px; --s-12: 48px; --s-16: 64px;
+
+  --r-sm: 4px; --r-md: 6px; --r-lg: 8px; --r-xl: 10px; --r-full: 999px;
+
+  --fs-xs: 12px; --fs-sm: 13px; --fs-md: 14px; --fs-lg: 15px; --fs-xl: 18px; --fs-2xl: 20px; --fs-3xl: 26px; --fs-4xl: 40px;
+
+  --dur-fast: 120ms; --dur: 160ms; --dur-slow: 220ms; --ease: cubic-bezier(0.2, 0, 0, 1);
+
+  --sidebar-w: 224px; --topbar-h: 52px; --touch: 36px;
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+  --bg: #f5f6f8;
+  --bg-elev: #ffffff;
+  --bg-sunken: #f0f2f5;
+  --bg-hover: #f2f4f7;
+  --border: #e3e6eb;
+  --border-strong: #cfd4dc;
+  --text: #111827;
+  --text-muted: #4b5563;
+  --text-faint: #6b7280;
+  --primary: #1d5bd6;
+  --primary-hover: #174bb3;
+  --primary-soft: #edf3fd;
+  --primary-text: #ffffff;
+  --accent: #1d5bd6;
+  --success: #0f7a3d;
+  --success-soft: #e7f6ec;
+  --warning: #935700;
+  --warning-soft: #fdf3e1;
+  --danger: #b42318;
+  --danger-soft: #fdecea;
+  --info: #1d5bd6;
+  --info-soft: #edf3fd;
+  --focus: #1d5bd6;
+  --overlay: rgba(17, 24, 39, 0.4);
+  --shadow-sm: 0 1px 2px rgba(17, 24, 39, 0.05);
+  --shadow-md: 0 4px 12px rgba(17, 24, 39, 0.08), 0 1px 2px rgba(17, 24, 39, 0.04);
+  --shadow-lg: 0 12px 32px rgba(17, 24, 39, 0.14);
+  --skeleton: #eceef2;
+  --skeleton-shine: #f6f7f9;
+  --changed-cell: #fdf3e1;
+  --hero-grad: none;
+  /* Colorblind-safe categorical palette, validated (dataviz validate_palette.js) vs #ffffff.
+     Slots 3-5 are under 3:1 contrast, so every chart ships a table view. */
+  --chart-1: #2a78d6; --chart-2: #eb6834; --chart-3: #1baf7a; --chart-4: #eda100;
+  --chart-5: #e87ba4; --chart-6: #008300; --chart-7: #6250d6; --chart-8: #e34948;
+  --chart-grid: #eceef2; --chart-axis: #6b7280;
+  --up: #0f7a3d; --down: #b42318;
+  /* Area colours: one hue per part of the app (sidebar icon, page header, active state). */
+  --m-home: #475569; --m-dashboard: #2563eb; --m-ask: #0d9488; --m-insights: #d97706; --m-reports: #7c3aed;
+  --m-datasets: #059669; --m-upload: #0891b2; --m-sql: #db2777; --m-exports: #15803d; --m-downloads: #0f766e; --m-pivot: #4f46e5; --m-settings: #64748b;
+  --q-valid: #2a78d6; --q-error: #b42318; --q-empty: #c4c9d2;
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --bg: #0e1013;
+  --bg-elev: #16181d;
+  --bg-sunken: #121418;
+  --bg-hover: #1d2026;
+  --border: #262a31;
+  --border-strong: #353a44;
+  --text: #e7e9ec;
+  --text-muted: #a3a9b4;
+  --text-faint: #858c98;
+  --primary: #5b8def;
+  --primary-hover: #7aa3f3;
+  --primary-soft: #18223a;
+  --primary-text: #0e1013;
+  --accent: #5b8def;
+  --success: #4cc27a;
+  --success-soft: #11291b;
+  --warning: #e0a43a;
+  --warning-soft: #2d2210;
+  --danger: #f0716a;
+  --danger-soft: #331716;
+  --info: #7aa3f3;
+  --info-soft: #18223a;
+  --focus: #7aa3f3;
+  --overlay: rgba(0, 0, 0, 0.6);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 14px 36px rgba(0, 0, 0, 0.5);
+  --skeleton: #1d2026;
+  --skeleton-shine: #252930;
+  --changed-cell: #2d2210;
+  --hero-grad: none;
+  /* Same hues stepped for the dark surface; validated vs #16181d (all >= 3:1). */
+  --chart-1: #3987e5; --chart-2: #d95926; --chart-3: #199e70; --chart-4: #c98500;
+  --chart-5: #d55181; --chart-6: #008300; --chart-7: #9085e9; --chart-8: #e66767;
+  --chart-grid: #23262d; --chart-axis: #8d94a0;
+  --up: #4cc27a; --down: #f0716a;
+  --m-home: #94a3b8; --m-dashboard: #60a5fa; --m-ask: #2dd4bf; --m-insights: #fbbf24; --m-reports: #a78bfa;
+  --m-datasets: #34d399; --m-upload: #22d3ee; --m-sql: #f472b6; --m-exports: #4ade80; --m-downloads: #5eead4; --m-pivot: #a5b4fc; --m-settings: #94a3b8;
+  --q-valid: #3987e5; --q-error: #f0716a; --q-empty: #4a505b;
+}

@@ -1,0 +1,12 @@
+Customer ID,Customer Name,Email,Phone,City,Signup Date,Last Order,Amount (INR),Discount,Qty,Status,Rating,Weight
+C001,  john SMITH ,John.Smith@Gmail.com ,+91 98765 43210,mumbai,2024-01-05,05/01/2024 10:30,"₹1,20,000.50",10%,5,Active,4.5,2 kg
+C002,Priya Sharma,priya@example.com,9876543210,Mumbai ,2024-01-07T09:15:00Z,2024-02-03,Rs. 4500,5 %,3 pcs,active,4,1.5kg
+C003,"O'Brien, Kate",kate@example,(022) 2345-6789,BOMBAY,7th Jan 2024,Jan 8 2024,1.2E+05,,10,ACTIVE,5 stars,500 g
+C004,Rahul  Verma,rahul@example.com,98765-43211,Delhi,"January 8, 2024",20240110,"45,000",0.15,2,Inactive,3/5,1.2 kg
+C005,Anita Desai,anita@@example.com,,new delhi,08-01-2024,45300,12k,15%,1,in-active,,3kg
+C006,Vikram Rao,vikram@example.com,9876543212,Bengaluru,2024/01/09,2024-02-10,"₹ 8,750",20%,4,Active,4.0,2.5 kg
+C006,Vikram Rao,vikram@example.com,9876543212,Bengaluru,2024/01/09,2024-02-10,"₹ 8,750",20%,4,Active,4.0,2.5 kg
+C007,Sneha Iyer,SNEHA@EXAMPLE.COM,9876543213,Bangalore,2024-13-01,2024-02-11,-500,5%,-2,Actve,4.8,1 kg
+C008,Arjun Mehta,arjun@example.com,9876543214,Chennai,1900-01-01,2099-12-31,"₹1,00,00,000",5%,3,Active,9,2 kg
+C009,Café Owner,cafe@example.com,9876543215,Kolkata,2024-01-12,2024-02-12,â‚¹2000,5%,2,Active,4.2,0.8 kg
+C010,Neha Gupta,neha@example.com,9876543216,Pune,12/01/2024,2024-02-13,3200,N/A,2,Active,4.1,1 kg

@@ -1,0 +1,79 @@
+# Runs on every push and pull request, and weekly, so newly published vulnerabilities are caught too.
+name: Tests and security checks
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: "0 6 * * 1"
+permissions:
+  contents: read
+
+jobs:
+  secrets:
+    name: Scan Git history for secrets
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # every commit, not just the latest
+      # The gitleaks CLI scans the whole history. (The gitleaks GitHub Action scans only the pushed commit range,
+      # which fails on the first push to a new repository.) Any finding fails this job; values are redacted in the log.
+      - name: Scan every commit with gitleaks
+        run: |
+          curl -sSfL https://github.com/gitleaks/gitleaks/releases/download/v8.18.4/gitleaks_8.18.4_linux_x64.tar.gz | tar -xz gitleaks
+          ./gitleaks detect --source . --redact --verbose
+
+  backend:
+    name: Backend tests and dependency audit
+    runs-on: ubuntu-latest
+    services:
+      mongodb:
+        image: mongo:7.0
+        ports:
+          - 27017:27017
+        # The job's steps start only after this check passes, i.e. MongoDB is answering.
+        options: >-
+          --health-cmd "mongosh --quiet --eval 'db.runCommand({ping: 1}).ok' || exit 1"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 20
+    env:
+      MONGODB_URI: mongodb://127.0.0.1:27017
+    defaults:
+      run: { working-directory: ai-data-analyst-agent/backend }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.14" }
+      - run: pip install -r requirements-dev.txt
+      - name: Check MongoDB is reachable from the tests
+        run: |
+          python - <<'EOF'
+          import os, sys
+          from pymongo import MongoClient
+          try:
+              MongoClient(os.environ["MONGODB_URI"], serverSelectionTimeoutMS=20000).admin.command("ping")
+              print("MongoDB is reachable at", os.environ["MONGODB_URI"])
+          except Exception as e:
+              print("MongoDB is NOT reachable:", e)
+              sys.exit(1)
+          EOF
+      - name: MongoDB container logs (only when the check above failed)
+        if: failure()
+        run: docker ps -a && docker logs "${{ job.services.mongodb.id }}" 2>&1 | tail -50
+      - run: pip-audit -r requirements.txt
+      - run: pytest -q
+
+  frontend:
+    name: Frontend tests, build and dependency audit
+    runs-on: ubuntu-latest
+    defaults:
+      run: { working-directory: ai-data-analyst-agent/frontend }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: "22" }
+      - run: npm ci
+      - run: npm audit --audit-level=high
+      - run: npm test
+      - run: npm run build

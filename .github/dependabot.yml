@@ -1,0 +1,14 @@
+# Opens a pull request each week when a dependency has an update or a security fix.
+version: 2
+updates:
+  - package-ecosystem: pip
+    directory: /ai-data-analyst-agent/backend
+    schedule: { interval: weekly }
+    open-pull-requests-limit: 10
+  - package-ecosystem: npm
+    directory: /ai-data-analyst-agent/frontend
+    schedule: { interval: weekly }
+    open-pull-requests-limit: 10
+  - package-ecosystem: github-actions
+    directory: /
+    schedule: { interval: monthly }
