@@ -13,7 +13,7 @@ jobs:
     name: Scan Git history for secrets
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0 # every commit, not just the latest
       # The gitleaks CLI scans the whole history. (The gitleaks GitHub Action scans only the pushed commit range,
@@ -42,7 +42,7 @@ jobs:
     defaults:
       run: { working-directory: ai-data-analyst-agent/backend }
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: actions/setup-python@v5
         with: { python-version: "3.14" }
       - run: pip install -r requirements-dev.txt
@@ -70,7 +70,7 @@ jobs:
     defaults:
       run: { working-directory: ai-data-analyst-agent/frontend }
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: actions/setup-node@v4
         with: { node-version: "22" }
       - run: npm ci
