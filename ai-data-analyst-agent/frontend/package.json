@@ -17,7 +17,7 @@
     "@react-three/drei": "^10.7.9",
     "@react-three/fiber": "^9.8.2",
     "@uiw/react-codemirror": "4.25.12",
-    "axios": "1.21.0",
+    "axios": "1.21.1",
     "framer-motion": "14.10.0",
     "lucide-react": "1.70.0",
     "react": "19.3.1",
