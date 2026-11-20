@@ -16,4 +16,4 @@ httpx==0.28.1
 argon2-cffi==25.1.0
 slowapi==0.1.10
 limits==5.8.0
-pymongo==4.19.0
+pymongo==4.20.0
