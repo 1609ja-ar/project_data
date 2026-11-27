@@ -8,7 +8,7 @@ pandas==3.1.1
 numpy==2.5.4
 scipy==1.18.1
 pyarrow==26.0.1
-duckdb==2.0.0
+duckdb==2.0.1
 sqlglot==30.29.0
 openpyxl==3.1.5
 xlrd==2.0.2
