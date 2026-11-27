@@ -23,7 +23,7 @@
     "react": "19.3.1",
     "react-dom": "19.3.1",
     "react-router-dom": "7.18.5",
-    "recharts": "3.10.1",
+    "recharts": "3.11.1",
     "sql-formatter": "15.9.0",
     "three": "^0.186.1"
   },
